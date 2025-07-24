@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
@@ -11,10 +11,62 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Hello from Electron renderer!</title>
+    <title>Автоматический пробоотборник</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
+    
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h2><span class="badge text-bg-success">Панель ручного управления</span></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        T1
+      </div>
+      <div class="col">
+        T2
+      </div>
+      <div class="col">
+        T3
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Охлаждение камеры вкл./выкл.
+      </div>
+      <div class="col">
+        Статус охладителя
+      </div>
+      <div class="col">
+        Наличие воды в трубке насоса
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Насос вкл./выкл.
+      </div>
+      <div class="col">
+        Скорость насоса
+      </div>
+      <div class="col">
+        Статус насоса
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Поворот сервопривода
+      </div>
+      <div class="col">
+        Количество шагов
+      </div>
+      <div class="col">
+        Статус сервопривода
+      </div>
+    </div>
+</div>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
   </body>
 </html>
