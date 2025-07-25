@@ -16,54 +16,86 @@
   </head>
   <body>
     
-  <div class="container text-center">
+  <div class="container-fluid text-center">
     <div class="row">
-      <div class="col">
-        <h2><span class="badge text-bg-success">Панель ручного управления</span></h2>
+      <div class="col text-bg-success">
+        <div class="p-3">
+          <h3>Панель ручного управления пробоотборником</h2>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        T1
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-primary">Вкл./выкл. Пельтье </button>
+        </div>
       </div>
-      <div class="col">
-        T2
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-secondary">Статус охладителя</button>
+        </div>
       </div>
-      <div class="col">
-        T3
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        Охлаждение камеры вкл./выкл.
-      </div>
-      <div class="col">
-        Статус охладителя
-      </div>
-      <div class="col">
-        Наличие воды в трубке насоса
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-secondary">Статус воды в трубке</button>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        Насос вкл./выкл.
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-primary">T1</button>
+        </div>
       </div>
-      <div class="col">
-        Скорость насоса
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-primary">T2</button>
+        </div>
       </div>
-      <div class="col">
-        Статус насоса
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-primary">T3</button>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        Поворот сервопривода
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-primary">Вкл./выкл. насос</button>
+        </div>
       </div>
-      <div class="col">
-        Количество шагов
+      <div class="col border border-dark">
+        <div class="p-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Скорость насоса:</span>
+            <input type="text" class="form-control" placeholder="100" aria-label="Speed" aria-describedby="basic-addon1">
+          </div>
+        </div>
       </div>
-      <div class="col">
-        Статус сервопривода
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-danger">Статус насоса</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-primary">Повернуть сервопривод</button>
+        </div>
+      </div>
+      <div class="col border border-dark">
+        <div class="p-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Число шагов:</span>
+            <input type="text" class="form-control" placeholder="5" aria-label="Steps" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+      <div class="col border border-dark">
+        <div class="p-3">
+          <button type="button" class="btn btn-outline-success">Статус сервопривода</button>
+        </div>
       </div>
     </div>
 </div>
