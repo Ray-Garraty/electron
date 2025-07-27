@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
+import os from 'node:os';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import managePump from './hardware/pump.js';
@@ -24,16 +25,21 @@ const createWindow = () => {
     }
 });
   win.loadFile('index.html');
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
+  if (os.platform() === 'win32') {
+    console.log();
+    console.log('Windows OS detected. Switching to the hardware simulation mode...');
+    console.log();
+  }
 };
 
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => app.quit());
 
-ipcMain.handle('Toggle Cooler', async () => {
+ipcMain.handle('Toggle Cooler', () => {
   isCoolerOn = !isCoolerOn;
-  await toggleCooler(isCoolerOn);
+  toggleCooler(isCoolerOn);
   return isCoolerOn;
 });
 

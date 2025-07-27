@@ -1,26 +1,28 @@
-/* import Gpio from 'onoff';
+import Gpio from 'onoff';
+import os from 'node:os';
 
-const relayPinNumber = 529;
-const relayPin = new Gpio.Gpio(relayPinNumber, 'out');
+const toggleCooler = os.platform() === 'win32' ?
+  (stateToToggle) => {
+    console.log('');
+    if (stateToToggle) {
+      console.log('Cooler enabled');
+    } else {
+      console.log('Cooler disabled');
+    };
+    console.log('');
+  }    
+: 
+  (stateToToggle) => {
+    const relayPinNumber = 529;
+    const relayPin = new Gpio.Gpio(relayPinNumber, 'out');
+    if (stateToToggle) {
+      relayPin.writeSync(1);
+      console.log('Cooler enabled on the pin №', relayPinNumber);
+    } else {
+      relayPin.writeSync(0);
+      console.log('Cooler disabled');
+    };
+  } 
+;
 
-const toggleCooler = (stateToToggle) => {
-  if (stateToToggle) {
-    relayPin.writeSync(1);
-    console.log('Cooler enabled on the pin №', relayPinNumber);
-  } else {
-    relayPin.writeSync(0);
-    console.log('Cooler disabled');
-  };
-}; */
-
-const toggleCooler = (stateToToggle) => {
-  console.log('');
-  if (stateToToggle) {
-    console.log('Cooler enabled');
-  } else {
-    console.log('Cooler disabled');
-  };
-  console.log('');
-};
-
-export default toggleCooler;
+  export default toggleCooler;
