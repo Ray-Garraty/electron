@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld ('electronAPI', {
-  sendSyncToMain: (channel, data) => ipcRenderer.sendSync(channel, data)
+  manageHardware: (command, settings) => ipcRenderer.invoke(command, settings),
+  inquireSensors: (command, settings) => ipcRenderer.invoke(command, settings),
 });

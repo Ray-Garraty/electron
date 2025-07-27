@@ -2,9 +2,11 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { startPump, stopPump } from './hardware/pump.js';
-import { toggleCooler } from './hardware/cooler.js';
-import { moveServo } from './hardware/servo.js';
+import managePump from './hardware/pump.js';
+import toggleCooler from './hardware/cooler.js';
+import moveServo from './hardware/servo.js';
+import readTemperatures from './hardware/tempsensors.js';
+import readTubeSensor from './hardware/tubesensors.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,38 +17,49 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 480,
-    x: 1500,
-    y: 300,
+    // x: 1500,
+    // y: 300,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
 });
   win.loadFile('index.html');
-  win.webContents.openDevTools();
-}
+  // win.webContents.openDevTools();
+};
 
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => app.quit());
 
-ipcMain.on('Toggle Cooler', (event) => {
+ipcMain.handle('Toggle Cooler', async () => {
   isCoolerOn = !isCoolerOn;
-  toggleCooler(isCoolerOn);
-  event.returnValue = isCoolerOn;
-})
+  await toggleCooler(isCoolerOn);
+  return isCoolerOn;
+});
 
-ipcMain.on('Toggle Pump', (event, speed) => {
+ipcMain.handle('Toggle Pump', (event, speed) => {
   isPumpOn = !isPumpOn;
   if (isPumpOn) {
-    startPump(speed);
+    managePump(speed);
   } else {
-    stopPump();
-  };
-  event.returnValue = isPumpOn;
-})
+    managePump(0);
+  }
+  return isPumpOn;
+});
 
-ipcMain.on('Move Servo', (event, angle) => {
+ipcMain.handle('Move Servo', (event, angle) => {
   currentAngle = moveServo(currentAngle, angle);
-  event.returnValue = currentAngle;
   console.log('Servo position now is:', currentAngle);
+  console.log('');
+  return currentAngle;
+});
+
+ipcMain.handle('Temperature', () => {
+  const temperatures = readTemperatures();
+  return temperatures;
+});
+
+ipcMain.handle('Tube', () => {
+  const isTubeFull = readTubeSensor();
+  return isTubeFull;
 })

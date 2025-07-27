@@ -1,4 +1,5 @@
-export const moveServo = (prevAngle, angleToGo) => {
+const moveServo = (prevAngle, angleToGo) => {
+  console.log('');
   console.log('Previous Servo position was', prevAngle, 'degrees');
   console.log('Rotating Servo by', angleToGo, 'degrees...');
   if ((prevAngle + angleToGo) > 360) {
@@ -9,3 +10,5 @@ export const moveServo = (prevAngle, angleToGo) => {
     return prevAngle + angleToGo;
   }
 };
+
+export default moveServo;
