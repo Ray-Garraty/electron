@@ -14,6 +14,8 @@ const __dirname = dirname(__filename);
 let isCoolerOn, isPumpOn = false;
 let currentAngle = 0;
 
+app.commandLine.appendSwitch('--no-sandbox');
+
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -60,12 +62,6 @@ ipcMain.handle('Move Servo', (event, angle) => {
   return currentAngle;
 });
 
-ipcMain.handle('Temperature', () => {
-  const temperatures = readTemperatures();
-  return temperatures;
-});
+ipcMain.handle('Temperature', () => readTemperatures());
 
-ipcMain.handle('Tube', () => {
-  const isTubeFull = readTubeSensor();
-  return isTubeFull;
-})
+ipcMain.handle('Tube', () => readTubeSensor());

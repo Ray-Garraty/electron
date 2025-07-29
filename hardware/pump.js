@@ -1,4 +1,4 @@
-import Gpio from 'onoff';
+import Gpio from 'pigpio';
 import os from 'node:os';
 
 const managePump = os.platform() === 'win32' ?
