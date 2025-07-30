@@ -27,7 +27,7 @@ const createWindow = () => {
     }
 });
   win.loadFile('index.html');
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
   if (os.platform() === 'win32') {
     console.log();
     console.log('Windows OS detected. Switching to the hardware simulation mode...');

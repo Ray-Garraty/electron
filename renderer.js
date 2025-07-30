@@ -66,9 +66,8 @@ servoAngleInput.addEventListener('input', () => {
 const inquireTempSensors = () => {
   window.electronAPI.inquireSensors('Temperature')
     .then((temperatures) => {
-    	console.log(temperatures);
-	tempFields.map((field, i) => {
-	  field.innerText = temperatures[i] + '⁰C';
+	  tempFields.map((field, i) => {
+	    field.innerText = temperatures[i] + '⁰C';
           field.classList.remove(...field.classList);
           if (temperatures[i] > 4.2) {
             field.classList.add('btn', 'btn-lg', 'btn-outline-danger');
@@ -101,6 +100,6 @@ const inquireTubeSensor = () => {
     });
 };
 
-setInterval(inquireTempSensors, 10000);
+setInterval(inquireTempSensors, 2000);
 
 setInterval(inquireTubeSensor, 1000);
