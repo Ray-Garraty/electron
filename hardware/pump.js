@@ -1,5 +1,6 @@
-import Gpio from 'pigpio';
 import os from 'node:os';
+import Gpio from 'onoff';
+import pwm from 'raspi-soft-pwm';
 
 const managePump = os.platform() === 'win32' ?
   (speed) => {
@@ -13,22 +14,20 @@ const managePump = os.platform() === 'win32' ?
   }  
 :
   (speed) => {
-    const stepPin = new Gpio.Gpio(21, {mode: Gpio.OUTPUT});
-    const dirPin = new Gpio.Gpio(20, {mode: Gpio.OUTPUT});
-    const enPin = new Gpio.Gpio(16, {mode: Gpio.OUTPUT});
-    if (speed === 0) {
-      stepPin.pwmWrite(0);
-      enPin.pwmWrite(255);
-      console.log('Pump stopped');
-    } else {
-      dirPin.pwmWrite(0);
-      enPin.pwmWrite(0);
-      console.log('Pump started at', speed, 'speed');
-      console.log('');
-      while (speed > 0) {
-        stepPin.pwmWrite(speed);
-      }
+	const stepPin = new pwm.SoftPWM({
+	  pin: 'GPIO21',
+	  frequency: 1500
+    });
+    const dirPin = new Gpio.Gpio(532, 'out');
+    const enPin = new Gpio.Gpio(528, 'out');
+  
+    dirPin.writeSync(1);
+    enPin.writeSync(0);
+  
+    for (let i = 0; i < 10000000; i += 1) {
+	  stepPin.write(0.5);
     }
+    enPin.writeSync(1);
   }
 ;
 

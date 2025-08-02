@@ -1,5 +1,3 @@
-// import sensor from 'ds18b20-raspi';
-// import ds18b20 from 'ds18b20';
 import sensor from 'ds18x20';
 import os from 'node:os';
 
@@ -25,22 +23,6 @@ const readTemperatures = os.platform() === 'win32' ?
           reject(error);
         }
      });
-     
-     /* return new Promise((resolve, reject) => {
-       try {
-         const rawData = sensor.readAllC(1);
-         // const temps = rawData.map((dataObj) => dataObj.t);
-		 // console.log('Temperatures:', temps);
-         resolve(rawData);
-       } catch (error) {
-         reject(error);
-       }
-     }); */
-     
-     /*const rawData = await sensor.readAllC(1);
-	 const temps = rawData.map((dataObj) => dataObj.t);
-     console.log('Temperatures:', temps);  
-	 return temps; */
   }
 ;
 
